@@ -22,7 +22,6 @@ public class Seat {
     public int getCol() { return col; }
     public int getSeatNumber() { return seatNumber; }
 
-    // We will use this during the allocation algorithm in memory
     public boolean isOccupied() { return isOccupied; }
     public void setOccupied(boolean occupied) { isOccupied = occupied; }
 
