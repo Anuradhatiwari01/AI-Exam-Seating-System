@@ -20,11 +20,10 @@ public class AllocationService {
     public void generateSeating(long examId, long roomId, SeatingStrategy strategy) {
         System.out.println("--- Service: Generating Seating for Exam " + examId + " ---");
 
-        // 1. Fetch Data
+
         List<Student> students = fetchStudentsForExam(examId);
         List<Seat> seats = roomDAO.getSeatsByRoomId(roomId);
 
-        // Validation
         if (students.isEmpty()) {
             System.err.println("Service Error: No students found for this exam. (Did you add them to DB?)");
             return;
@@ -33,8 +32,6 @@ public class AllocationService {
             System.err.println("Service Error: No seats found in Room " + roomId + ". (Check your Room ID)");
             return;
         }
-
-        // 2. Execute Strategy (AI or Greedy)
         System.out.println("Running Strategy with " + students.size() + " students and " + seats.size() + " seats...");
         long start = System.currentTimeMillis();
         List<Allocation> allocations = strategy.allocate(examId, students, seats);
@@ -47,7 +44,6 @@ public class AllocationService {
             return;
         }
 
-        // 3. Save to Database
         boolean success = allocationDAO.bulkSaveAllocations(allocations);
 
         if (success) {
@@ -57,7 +53,6 @@ public class AllocationService {
         }
     }
 
-    // Temporary helper to get our test data
     private List<Student> fetchStudentsForExam(long examId) {
         List<Student> list = new ArrayList<>();
         // Try to fetch the students we created in Phase 7
