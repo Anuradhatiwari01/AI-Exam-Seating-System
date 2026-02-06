@@ -16,13 +16,9 @@ public class GreedyStrategy implements SeatingStrategy {
         int seatIndex = 0;
 
         System.out.println("--- Running Greedy Strategy ---");
-
-        // Loop while we have both students and seats available
         while (studentIndex < students.size() && seatIndex < seats.size()) {
             Student student = students.get(studentIndex);
             Seat seat = seats.get(seatIndex);
-
-            // Create the pair
             allocations.add(new Allocation(examId, student.getId(), seat.getId()));
 
             System.out.println("Assigned Student " + student.getName() + " to Seat " + seat.getSeatNumber());
