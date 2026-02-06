@@ -9,7 +9,6 @@ import java.sql.SQLException;
 
 public class StudentDAO {
 
-    // CAPABILITY 1: Add a student
     public void addStudent(String rollNo, String name, String email, String branch) {
         String sql = "INSERT INTO students (roll_no, name, email, branch) VALUES (?, ?, ?, ?)";
 
@@ -25,12 +24,10 @@ public class StudentDAO {
             System.out.println("Student " + name + " added.");
 
         } catch (SQLException e) {
-            // We just print error, we don't crash.
             System.err.println("Error adding student: " + e.getMessage());
         }
     }
 
-    // CAPABILITY 2: Find a student
     public Student getStudentByRollNo(String rollNo) {
         String sql = "SELECT * FROM students WHERE roll_no = ?";
 
