@@ -6,7 +6,6 @@ window.onload = () => {
     addStudentRow();
 };
 
-// --- NAVIGATION ---
 function showTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -21,7 +20,6 @@ function showTab(tabId) {
     if(tabId === 'map') loadMap();
 }
 
-// --- API: DASHBOARD ---
 async function loadStats() {
     const res = await fetch(`${API}/stats`);
     const data = await res.json();
@@ -31,7 +29,6 @@ async function loadStats() {
     document.getElementById('stat-allocated').innerText = data.allocated;
 }
 
-// --- API: CONFIGURATION ---
 async function resetSystem() {
     if(!confirm("Are you sure? This will delete ALL data.")) return;
     await fetch(`${API}/reset`, {method:'POST'});
@@ -98,7 +95,6 @@ async function runAI() {
     }
 }
 
-// --- API: MAP ---
 async function loadMap() {
     const res = await fetch(`${API}/view`);
     const data = await res.json();
@@ -110,7 +106,6 @@ async function loadMap() {
         return;
     }
 
-    // Sort by Room
     data.sort((a,b) => a.room.localeCompare(b.room) || a.row - b.row);
 
     data.forEach(s => {
